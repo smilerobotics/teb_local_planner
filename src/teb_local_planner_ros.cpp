@@ -694,7 +694,7 @@ bool TebLocalPlannerROS::transformGlobalPlan(const tf2_ros::Buffer& tf, const st
 
     //let's get the pose of the robot in the frame of the plan
     geometry_msgs::PoseStamped robot_pose;
-    tf.transform(global_pose, robot_pose, plan_pose.header.frame_id);
+    tf.transform(global_pose, robot_pose, plan_pose.header.frame_id, ros::Duration(0.5));
 
     //we'll discard points on the plan that are outside the local costmap
     double dist_threshold = std::max(costmap.getSizeInCellsX() * costmap.getResolution() / 2.0,
